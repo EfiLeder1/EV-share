@@ -1,0 +1,144 @@
+.dropdown-control .multi-select-container{
+    background-color: var(--kt-input-solid-bg);
+    border-color: var(--kt-input-solid-bg);
+    color: var(--kt-input-solid-color);
+    transition: color .2s ease;
+    box-shadow: none !important;
+    border: 1px solid var(--kt-input-border-color);
+    background-image: var(--kt-form-select-indicator);
+    box-shadow: var(--kt-form-select-box-shadow);
+    appearance: none;
+    padding-left: 3.25rem !important;
+    height: 55px !important;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    padding: 0.65rem 1rem;
+    -moz-padding-start: calc(1rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: 18px;
+    background-repeat: no-repeat;
+    background-position: left 1rem center;
+    background-size: 16px 12px;
+    font-family: var(--bs-body-font-family);
+}
+.dropdown-control .multi-select-container .multi-select-button{
+    background-color: #a8b1ae;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    border: 0;
+    vertical-align: 0;
+    line-height: 2.5;
+    letter-spacing: 0px;
+    font-family: sans-serif;
+    font-size: 1em;
+}
+.dropdown-control .multi-select-container .multi-select-button::after{
+    display: none;
+}
+.dropdown-control .multi-select-container .multi-select-menu{
+    top: 3em;
+}
+.dropdown-control .multi-select-container .multi-select-menu label{
+    color: #000;
+}
+
+.multi-select-container {
+    display: inline-block;
+    position: relative;
+}
+
+.multi-select-menu {
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    z-index: 1;
+    float: left;
+    min-width: 100%;
+    background: #fff;
+    margin: 1em 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.multi-select-menuitem {
+    display: block;
+    font-size: 0.875em;
+    padding: 0.6em 1em 0.6em 30px;
+    white-space: nowrap;
+}
+
+.multi-select-legend {
+    font-size: 0.875em;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.multi-select-legend + .multi-select-menuitem {
+    padding-top: 0.25rem;
+}
+
+.multi-select-menuitem + .multi-select-menuitem {
+    padding-top: 0;
+}
+
+.multi-select-presets {
+    border-bottom: 1px solid #ddd;
+}
+
+.multi-select-menuitem input {
+    position: absolute;
+    margin-top: 0.25em;
+    margin-left: -20px;
+}
+
+.multi-select-button {
+    display: inline-block;
+    font-size: 0.875em;
+    padding: 0.2em 0.6em;
+    max-width: 16em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: -0.5em;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.multi-select-button:after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0.4em 0.4em 0 0.4em;
+    border-color: #999 transparent transparent transparent;
+    margin-left: 0.4em;
+    vertical-align: 0.1em;
+}
+
+.multi-select-container--open .multi-select-menu {
+    display: block;
+}
+
+.multi-select-container--open .multi-select-button:after {
+    border-width: 0 0.4em 0.4em 0.4em;
+    border-color: transparent transparent #999 transparent;
+}
+
+.multi-select-container--positioned .multi-select-menu {
+    /* Avoid border/padding on menu messing with JavaScript width calculation */
+    box-sizing: border-box;
+}
+
+.multi-select-container--positioned .multi-select-menu label {
+    /* Allow labels to line wrap when menu is artificially narrowed */
+    white-space: normal;
+}

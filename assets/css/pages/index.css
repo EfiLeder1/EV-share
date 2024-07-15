@@ -1,0 +1,619 @@
+/* <!-- ====================== Header===================== --> */
+*, ::before, ::after{
+    box-sizing: border-box;
+}
+.main {
+    background-image: url(../../images/bg.avif);
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+p, label, input, select, .butto{
+    font-family: sans-serif;
+}
+h1, h2{   
+    font-family: "Jaturat";
+    text-transform: uppercase;
+}
+ .text-Jaturat{
+    font-family: "Jaturat" !important;
+}
+
+/* <!-- ====================== Home ===================== --> */
+
+.home{
+    /* overflow-x: hidden; */
+}
+.home, .main-vid, .log-reg-form {
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    background-color: #000000;
+    position: relative;
+}
+.log-reg-form {
+    background-color: #102419;
+
+}
+
+.home video, .main-vid video, .log-reg-form video{
+    height: auto;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.home video, .log-reg-form video{
+    top: 0;
+}
+ .main-vid video{
+    bottom: 0;
+ }
+.home-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    align-items: center;
+}
+
+.home-header img {
+    height: 45px;
+}
+
+.btn-home, .locate-button {
+    padding: 4px 10px 1px;
+    font-weight: bold;
+    color: black;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    background-color: #FAFB63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 20px;
+    font-family: "Jaturat";
+    font-size: 23px;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    text-transform: uppercase;
+}
+
+.home-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.home .car-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    height: auto;
+    z-index: 1;
+    /* opacity: 0.4; */
+}
+
+.anim-img {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28%;
+    height: auto;
+    z-index: 2;
+    opacity: 0.2;
+
+}
+
+.home-content h1 {
+    color: #FAFB63;
+    font-size: 100px;
+    line-height: 101px;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.home-content .btn.btn-home-login {
+    background-color: #FAFB63;
+    color: #000;
+    padding: 5px 20px !important;
+    font-family: "Jaturat" !important;
+    font-size: 20px !important;
+    margin-top: 70px;
+}
+
+/* <!-- ====================== About Us ===================== --> */
+
+.about-content {
+    min-height: 100%;
+    height: auto;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.about-content h1 {
+    color: #6BFFF7;
+    font-size: 60px;
+    line-height: 76px;
+}
+.about-content img{
+height: 35px;
+margin: 10px 0 20px;
+}
+.about-content p {
+font-size: 20px;
+color: #fff;
+width: 40%;
+margin-bottom: 10%;
+}
+
+/* <!-- ====================== About Us ===================== --> */
+.registor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+.registor h1 {
+    color: #FAFB63;
+    font-size: 60px;
+    line-height: 56px;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.registor h2 {
+    color: #FAFB63;
+    font-size: 40px;
+    line-height: 41px;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+.registor p{
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+}
+.sign-up-btn{
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    font-family: sans-serif;
+    font-size: 17px;
+    width: 45%;
+    margin-top: 25px;
+}
+.registor label{
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+.registor .dont-have-account{
+    letter-spacing: 1px;
+}
+
+
+/* <!-- ====================== Locate Charging Station ===================== --> */
+.locate-charging-station {
+    padding: 20px 0 40px;
+}
+.locate-charging-station h1 {
+    color: #FAFB63;
+    font-size: 40px;
+    line-height: 41px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    margin-top: 25px;
+    cursor: pointer;
+}
+.locate-charging-station h2 {
+    color: #FAFB63;
+    font-size: 33px;
+    line-height: 35px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    margin-top: 25px;
+}
+.locate-charging-station .map{
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+.search-bar{
+    height: 50px;
+    width: 450px;
+    position: absolute;
+    top: 15px !important;
+    left: 30px !important;
+    background-color: #F4F4F4;
+    border-radius: 30px;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.search-bar input{
+    border: none;
+    outline: none;
+    text-decoration: none;
+    background: none;
+    border: none;
+    /* width: 100%; */
+    flex-grow: 1;
+    text-align: right;
+    font-family: "Jaturat" !important;
+    padding: 5px 15px;
+    font-size: 28px;
+
+}
+.search-btn{
+    height: 44px;
+    width: 44px;
+    background-color: #2C05F2;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    font-size: 30px;
+    /* position: absolute;
+    left: 0; */
+}
+.si-border{
+    width: 1px;
+    background: #fcfcfc;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 37px;
+    z-index: 1;
+}
+.img-fit{
+    object-fit: cover;
+}
+
+
+/* <!-- ====================== About Us ===================== --> */
+.station-management{
+    position: relative;
+    padding: 40px 0;
+}
+
+
+.station-management h1 {
+    color: #FAFB63;
+    font-size: 40px;
+    line-height: 41px;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+.sta-card{
+    background-color: rgba(250, 251, 99, 0.6);
+    padding: 30px 40px 90px;
+    border-radius: 40px;
+    min-height: 500px;
+    position: relative;
+
+}
+.sta-search{
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3px 20px;
+    border-radius: 40px;
+}
+.sta-search input::placeholder{
+    color: rgba(250, 251, 99, 0.6);
+}
+.search-in{
+    border: none;
+    outline: none;
+    text-decoration: none;
+    background: none;
+    border: none;
+    /* width: 100%; */
+    flex-grow: 1;
+    font-family: "Jaturat" !important;
+    padding: 5px 15px;
+    color: #F4F4F4;
+    font-size: 18px;
+
+
+}
+.sta-search i{
+    font-size: 40px;
+}
+.btn-ss{
+    font-size: 22px !important;
+    position: absolute;
+    bottom: 18px;
+    font-family: sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.rep-search{
+    height: 68px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 3px 9px 3px 20px;
+    border-radius: 40px;
+    align-items: center;
+}
+input#modified::-webkit-calendar-picker-indicator {
+    width: 100%;
+    margin: 0;
+    height: 35px;
+    border: 1px solid var(--kt-danger);
+    background: none;
+  }
+
+  .form-switch.form-check-custom.form-check-solid .form-check-input:checked {
+    background-color: var(--kt-success) !important;
+}
+  .form-switch.form-check-custom.form-check-solid .form-check-input {
+    background-color: var(--kt-danger) !important;
+}
+
+/* <!-- ====================== Custom ===================== --> */
+
+.tooltip-info-icon{
+    font-size: 1.4em;
+    color: #181c32;
+    border-radius: 50%;
+    padding: 0px 3px;
+    background-color: #fafb62;
+    font-weight: normal;
+    line-height: 0;
+    margin-left: 5px;
+    font-family: auto;
+    cursor: pointer;
+}
+.tooltip-pro {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-pro .tooltiptext {
+    visibility: hidden;
+    font-size: 1em;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    text-transform: none;
+    top: -5px;
+    left: 35px;
+}
+
+.payment-options .btn {
+    padding: 10px 20px !important;
+}
+
+.tooltip-pro:hover .tooltiptext {
+    visibility: visible;
+}
+
+.table thead,
+.table tbody {
+    font-size: 1.3em;
+}
+
+.table tbody {
+    color: white;
+}
+
+.table td:first-child, .table th:first-child, .table tr:first-child {
+    padding: .75rem .75rem !important;
+}
+
+.table td:last-child, .table th:last-child, .table tr:last-child {
+    padding: .75rem .75rem !important;
+}
+
+@media (max-width: 1390px){
+    .log-reg-form video {
+        width: auto;
+        height: 100%;
+    }
+}
+@media (max-width: 1200px){
+    .add-new-charging-station-sec{
+        min-height:  auto;
+    }
+    .butto button{
+        font-size: 18px !important;
+    }
+    
+}
+@media (max-width: 992px){
+    label.fs-5, label.fs-3{
+        font-size: 0.9rem !important;
+    }
+    
+    .about-content {
+        justify-content: center;
+    }
+    .about-content p {
+        width: 80%;
+    }
+    
+    .home-header{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        position: relative;
+    }
+    .home-content{
+        height: calc(100% - 117px);
+    }
+}
+@media (max-width: 850px){
+    .station-management-sec .sta-search{
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+        padding: 8px 20px 9px;
+    }
+    .station-management-sec .sta-search{
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+        padding: 8px 20px 9px;
+    }
+    .station-management-sec .sta-search .d-flex{
+        border-top: 1px solid var(--kt-primary);
+        padding-top: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+@media (max-width: 763px){
+    .add-new-car-sec.main-vid{
+        min-height:  auto;
+    }
+    .about-content p {
+        width: 100%;
+    } 
+    .about-content h1 {
+        font-size: 50px;
+
+    }
+    .about-sec .container{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    .sta-search i {
+        font-size: 28px;
+    } 
+    .register-sec{
+        min-height: auto;
+        padding: 40px 0;
+    }
+}
+@media (max-width: 700px){
+    .registor h1 {
+        font-size: 40px;
+    }
+    .home .car-img{
+        width: 80%;
+    }
+    .anim-img {
+        width: 48%;
+    }
+    .home-content h1 {
+        font-size: 70px;
+    }
+}
+@media (max-width: 670px){
+    .locate-charging-station h2 {
+        font-size: 28px;
+    }
+    .locate-charging-station h1{
+        font-size: 30px;
+        margin: 2px 0 !important;
+    }
+}
+@media (max-width: 600px){
+    .log-reg-form video {
+        width: 100%;
+        height: auto;
+    }
+    .sta-card{
+        padding: 30px 20px 90px;
+    }
+    .sta-search{
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+        padding: 8px 20px 9px;
+    }
+    .sta-search .d-flex{
+        border-top: 1px solid var(--kt-primary);
+        padding-top: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+    .sta-search {
+        border-radius: 15px;
+    }   
+    .rep-search .d-flex{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .rep-search{
+        height: auto;
+        border-radius: 15px;
+        padding: 8px 20px 9px;
+    }
+    .btn-home{
+        position: relative;
+    }
+    .search-bar {
+        height: 50px;
+        width: 310px;
+        left: 9px;
+
+    }
+    .search-bar input{
+        width: 100% !important;
+    }
+    .search-btn {
+        width: 54px;
+        font-size: 24px;
+    }
+
+}
+@media (max-width: 480px){
+    .home-header {
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+@media (max-width: 411px){
+    .registor h2, .station-management h1 {
+        font-size: 30px;
+    }  
+    .home-content h1 {
+        font-size: 50px;
+        line-height: 71px;
+    }
+    .home-content .btn.btn-home-login {
+        margin-top: 40px;
+    }
+    .home-content {
+        padding: 0px 0 100px;
+    }
+    
+    .anim-img {
+        width: 78%;
+        top: 50%;
+
+    }
+}
