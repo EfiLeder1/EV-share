@@ -6,6 +6,7 @@ $conn = new pg_connect("host=$db_host dbname=$db_name user=$db_user password=$db
 
 // Check connection
 if ($conn->connect_error) {
+    echo "not connected to DB";
     die("Connection failed: " . $conn->connect_error);
 }
 
