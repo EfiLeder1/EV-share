@@ -2,8 +2,11 @@
 session_start();
 
 // Database connection parameters
-$servername = "ep-quiet-union-a4bjux9v-pooler.us-east-1.aws.neon.tech";
-$username = "default";
-$password = "zQY3K5LbkMIi";
-$dbname = "verceldb";
+$db_host = getenv('DB_HOST');
+$db_name = getenv('DB_NAME');
+$db_user = getenv('DB_USER');
+$db_password = getenv('DB_PASSWORD');
+
+$conn = pg_connect("host=$db_host dbname=$db_name user=$db_user password=$db_password");
+
 ?>
