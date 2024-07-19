@@ -3,7 +3,7 @@ session_start();
 
 // Database connection parameters
 $servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "ewevolut_ev-share";
+$username = "default";
+$password = "zQY3K5LbkMIi";
+$dbname = "verceldb";
 ?>
