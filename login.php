@@ -2,8 +2,7 @@
 include_once('db_details.php');
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+$conn = new mysqli("host=$db_host dbname=$db_name user=$db_user password=$db_password");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
