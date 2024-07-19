@@ -16,6 +16,28 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
     exit();
 }
 
+/** Fetching all system values */
+$query = "SELECT * FROM system_values";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$sys_result = $stmt->get_result();
+
+$system_values = [];
+while ($row = $sys_result->fetch_assoc()) {
+    $system_values[$row['name']] = $row['value'];
+}
+
+/** Fetching all stations */
+$sql = "SELECT * FROM station_models";
+$result = $conn->query($sql);
+
+$station_models = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $station_models[] = $row;
+    }
+}
+
 $station_id = $_GET['id'];
 
 // Fetch station details from database
@@ -122,7 +144,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>View Station</title>
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/jquery.multi-select.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/jquery.multi-select.min.js"></script>
 </head>
 <body>
     <!-- ====================== Header===================== -->
@@ -131,6 +155,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <source src="./assets/images/wave.mp4" type="video/mp4">
         </video>
         <div class="container h-100 z-index-3 position-relative">
+            <div class="d-flex align-items-center gap-md-5 gap-2 flex-wrap mt-5">
+                <div class="locate-button position-relative"><a class="text-dark" href="panel-page.php">Panel</a></div>
+            </div>
             <div class="registor justify-content-start align-items-start py-12 px-lg-0 px-sm-10">
                 <h2>View Charging station</h2>
                 <form id="edit-station-form" action="edit_station.php?id=<?php echo htmlspecialchars($station_id); ?>" method="post" enctype="multipart/form-data">
@@ -148,10 +175,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="w-100 position-relative">
                                                 <div class="si-border"></div>
                                                 <select disabled class="form-select h-55px form-select-solid ps-13" name="station_model" required>
-                                                    <option value="">--select--</option>
-                                                    <option value="Gen 3" <?php echo $station['station_model'] == 'Gen 3' ? 'selected' : ''; ?>>Gen 3</option>
-                                                    <option value="Gen 2" <?php echo $station['station_model'] == 'Gen 2' ? 'selected' : ''; ?>>Gen 2</option>
-                                                    <option value="Gen 1" <?php echo $station['station_model'] == 'Gen 1' ? 'selected' : ''; ?>>Gen 1</option>
+                                                    <?php
+                                                        $selected_models = is_string($station_models) ? explode(',', $station_models):implode(', ', $station_models);
+                                                        if($station['station_model']){
+                                                            foreach($station_models as $model){
+                                                                $selected = $station['station_model'] == $model['id'] ? 'selected' : '';
+                                                                echo '<option value="'.$model['id'].'" '.$selected.'>'.$model['name'].'</option>';
+                                                            }
+                                                        }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -176,13 +208,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                                 <div class="col-md-6 mb-5">
                                     <label class="d-flex align-items-center fs-5 fw-semibold mb-2 text-white">Charging Type</label>
-                                    <div class="w-100 position-relative">
+                                    <div class="w-100 position-relative dropdown-control">
                                         <div class="si-border"></div>
-                                        <select disabled class="form-select h-55px form-select-solid ps-13" name="charging_type" required>
-                                            <option value="">--select--</option>
-                                            <option value="TESLA 1" <?php echo $station['charging_type'] == 'TESLA 1' ? 'selected' : ''; ?>>TESLA 1</option>
-                                            <option value="TESLA 2" <?php echo $station['charging_type'] == 'TESLA 2' ? 'selected' : ''; ?>>TESLA 2</option>
-                                            <option value="TESLA 3" <?php echo $station['charging_type'] == 'TESLA 3' ? 'selected' : ''; ?>>TESLA 3</option>
+                                        <?php $slected_charge_types = explode(',', $station['charging_type']); ?>
+                                        <select disabled multiple id="chargin-types" class="form-select h-55px form-select-solid ps-13" name="charging_type[]" required>
+                                            <option value="TESLA 1" <?php echo in_array("TESLA 1", $slected_charge_types) ? 'selected':''; ?>>TESLA 1</option>
+                                            <option value="TESLA 2" <?php echo in_array("TESLA 2", $slected_charge_types) ? 'selected':''; ?>>TESLA 2</option>
+                                            <option value="TESLA 3" <?php echo in_array("TESLA 3", $slected_charge_types) ? 'selected':''; ?>>TESLA 3</option>
                                         </select>
                                     </div>
                                 </div>
@@ -291,8 +323,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                     </div>
                                 </div>
-
-
                                 
 
                                 <div class="col-md-6 mb-5">
@@ -306,8 +336,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="col-xl-5">
-                            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54084.94909065688!2d34.75604657871049!3d32.08792483335339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4ca6193b7c1f%3A0xc1fb72a2c0963f90!2sTel%20Aviv-Yafo%2C%20Israel!5e0!3m2!1sen!2s!4v1716064810014!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <div id="map-canvas" style="height: 300px;"></div>
+                            <div id="map-canvas" style="height: 300px;width:100%"></div>
                             <input type="hidden" name="latitude" id="latitude" value="<?php echo htmlspecialchars($station['latitude']); ?>" required>
                             <input type="hidden" name="longitude" id="longitude" value="<?php echo htmlspecialchars($station['longitude']); ?>" required>
                             <div class="d-flex justify-content-end mt-9">
@@ -319,27 +348,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCst-5X8nOQwqiboEiq0xzZs7DMCMSFkYs&libraries=places&callback=initMap" async defer></script>
     <script>
-        // Initialize and add the map
+        var map;
+        const defaultLocation = {lat: <?php echo $station['latitude'] ?>, lng: <?php echo $station['longitude'] ?>};
+        const systemValues = JSON.parse('<?php echo json_encode($system_values) ?>');
+        const usingAlgorithm = '<?php echo $station['using_algorithm'] ?>';
+
+        $('document').ready(() => {
+            $('#chargin-types').multiSelect('disable');
+
+            setUseAlgoFields();
+        });
+
+        function setUseAlgoFields() {
+            const fieldStatus = usingAlgorithm == '1' ? true:false;
+
+            $("input[name='using_algorithm']").attr('checked', fieldStatus);
+            $("input[name='algo_price']").prop('readonly', fieldStatus);
+        }
+
         function initMap() {
-            var latitude = <?php echo htmlspecialchars($station['latitude']); ?>;
-            var longitude = <?php echo htmlspecialchars($station['longitude']); ?>;
-            
-            var map = new google.maps.Map(document.getElementById('map-canvas'), {
-                center: { lat: latitude, lng: longitude },
-                zoom: 13
+            map = new google.maps.Map(document.getElementById('map-canvas'), {
+                center: defaultLocation,
+                zoom: 9,
+                mapTypeControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
+            setMarker(defaultLocation);
+        }
+
+        function setMarker(coordinates) {
             var marker = new google.maps.Marker({
-                position: { lat: latitude, lng: longitude },
+                position: coordinates,
                 map: map,
-                draggable: true
             });
 
-            google.maps.event.addListener(marker, 'dragend', function(evt) {
-                document.getElementById('latitude').value = evt.latLng.lat().toFixed(6);
-                document.getElementById('longitude').value = evt.latLng.lng().toFixed(6);
-            });
+            map.setZoom(17);
         }
     </script>
 </body>

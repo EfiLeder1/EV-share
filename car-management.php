@@ -14,6 +14,9 @@
     <!-- ====================== Header ===================== -->
     <div class="main" style="background-image: url(./assets/images/wave-bg.jpg);">
         <div class="container h-100 z-index-3 position-relative">
+            <div class="d-flex align-items-center gap-md-5 gap-2 flex-wrap mt-5">
+                <div class="locate-button position-relative"><a class="text-dark" href="panel-page.php">Panel</a></div>
+            </div>
             <div class="station-management w-lg-75">
                 <h1>Cars MANAGEMENT</h1>
                 <div class="sta-card">

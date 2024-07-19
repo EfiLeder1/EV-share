@@ -53,6 +53,9 @@
             <source src="./assets/images/wave.mp4" type="video/mp4">
         </video>
         <div class="container h-100 z-index-3 position-relative">
+            <div class="d-flex align-items-center gap-md-5 gap-2 flex-wrap mt-5">
+                <div class="locate-button position-relative"><a class="text-dark" href="panel-page.php">Panel</a></div>
+            </div>
             <div class="registor justify-content-start align-items-start py-12 px-lg-0 px-sm-10">
                 <h2>Add New Charging station</h2>
                 <form id="add-station-form" action="add_station.php" method="post" enctype="multipart/form-data">
@@ -70,7 +73,6 @@
                                             <div class="w-100 position-relative">
                                                 <div class="si-border"></div>
                                                 <select class="form-select h-55px form-select-solid ps-13" name="station_model" required>
-                                                    <option value="">--select--</option>
                                                     <?php
                                                         if($station_models){
                                                             foreach($station_models as $model){
@@ -86,7 +88,6 @@
                                             <div class="w-100 position-relative">
                                                 <div class="si-border"></div>
                                                 <select class="form-select h-55px form-select-solid ps-13" name="station_year" required>
-                                                    <option value="">--select--</option>
                                                     <option value="2023">2024</option>
                                                     <option value="2023">2023</option>
                                                     <option value="2020">2020</option>
@@ -105,8 +106,7 @@
                                     <div class="w-100 position-relative dropdown-control">
                                         <div class="si-border"></div>
                                         <select multiple id="chargin-types" class="multi-select-container h-55px form-select-solid ps-13" name="charging_type[]" required>
-                                            <option value="">--select--</option>
-                                            <option value="TESLA 1">TESLA 1</option>
+                                            <option value="TESLA 1" selected>TESLA 1</option>
                                             <option value="TESLA 2">TESLA 2</option>
                                             <option value="TESLA 3">TESLA 3</option>
                                         </select>
@@ -117,7 +117,6 @@
                                     <div class="w-100 position-relative">
                                         <div class="si-border"></div>
                                         <select class="form-select h-55px form-select-solid ps-13" name="city" required>
-                                            <option value="">--select--</option>
                                             <option value="1">Afula</option>
                                             <option value="2">Akko</option>
                                             <option value="3">Arad</option>

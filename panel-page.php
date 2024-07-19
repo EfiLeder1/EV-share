@@ -79,17 +79,17 @@
             <div class="locate-charging-station">
                 <div class="d-flex align-items-center gap-md-5 gap-2 flex-wrap">
                     <div class="locate-button position-relative"><a class="text-dark" href="reports.php">Reports</a></div>
-                    <?php if($_SESSION['user_type'] == "Station_Owner"){ ?>
+                    <?php // if($_SESSION['user_type'] == "Station_Owner"){ ?>
                         <div class="locate-button position-relative"><a class="text-dark" href="station-management.php">Stations Managment</a></div>
-                    <?php } else if($_SESSION['user_type'] == "Car_Owner"){ ?>
+                    <?php // } else if($_SESSION['user_type'] == "Car_Owner"){ ?>
                         <div class="locate-button position-relative"><a class="text-dark" href="car-management.php">Car Managment</a></div>
-                    <?php } ?>
+                    <?php // } ?>
                     <div class="locate-button position-relative"><a class="text-dark" href="logout.php">Logout</a></div>
                 </div>
                 <h1 class="py-5 mb-7">Locate Charging Station</h1>
                 <div class="row">
                     <div id="map-container" class="col-xl-12">
-                        <div class="d-flex  align-items-center gap-md-5 gap-2 mb-5 flex-wrap">
+                        <div class="d-flex  align-items-center gap-md-5 gap-2 mb-10 flex-wrap">
                             <img src="./assets/images/car-Icon.svg" class="h-40px" alt="">
                             <h2 class="m-0">choose vehicle</h2>
                             <div class="w-200px position-relative">
@@ -126,7 +126,7 @@
                                             if($car['is_charging'] == '1'){ ?>
                                                 <div class="d-flex gap-3">
                                                     <button class="btn btn-success rounded-pill fs-1 fw-500 w-250px"><?php echo $car['selected_brand'].' '.$car['selected_model'] ?></button>
-                                                    <a href="panel-page-actions.php?action=remove-car&car=<?php echo $car['id'] ?>" class="btn btn-danger fw-500 rounded-pill pt-1">
+                                                    <a href="panel-page-actions.php?action=remove-car&car=<?php echo $car['id'] ?>" class="btn btn-danger fw-500 rounded-pill pt-1 car-charge-remove">
                                                         <i class="fa fa-times fs-2tx m-0 p-0" aria-hidden="true"></i>
                                                     </a>
                                                 </div>

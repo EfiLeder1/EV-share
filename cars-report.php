@@ -32,11 +32,11 @@
     if (isset($_GET['car']) && is_numeric($_GET['car'])) {
         $selected_car = $_GET['car'];
 
-        $session_sql = "select station.station_name, station.charging_capacity, station.address, SUM(session.total_price) as usage_cost, SUM(session.total_time) as usage_time
+        $session_sql = "select station.station_name, station.charging_capacity, station.address, session.start_time, session.end_time, SUM(session.total_price) as usage_cost, SUM(session.total_time) as usage_time
         from charging_sessions as session
         inner join station as station on session.station_id = station.id
         where session.car_id = $selected_car and session.user_id = $user_id
-        group by session.car_id, station.station_name, station.charging_capacity, station.address";
+        group by session.car_id";
 
         $session_result = $conn->query($session_sql);
         if ($session_result->num_rows > 0) {
@@ -68,6 +68,7 @@
         <div class="container h-100 z-index-3 position-relative">
             <div class="d-flex align-items-center gap-md-5 gap-2 flex-wrap mt-5">
                 <div class="locate-button position-relative"><a class="text-dark" href="reports.php">All Reports</a></div>
+                <div class="locate-button position-relative"><a class="text-dark" href="panel-page.php">Panel</a></div>
             </div>
             <div class="station-management w-lg-75">
                 <h1>Cars Report</h1>
@@ -95,8 +96,10 @@
                             <th scope="col" class="text-start">Station</th>
                             <th scope="col" class="text-start">Address</th>
                             <th scope="col">Capacity</th>
-                            <th scope="col">Usage Time</th>
                             <th scope="col">Cost Spend</th>
+                            <th scope="col">Usage Time</th>
+                            <th scope="col">Start Time</th>
+                            <th scope="col">End Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,8 +109,10 @@
                                     <th class="text-start"><?php echo $session['station_name']?></th>
                                     <td class="text-start"><?php echo $session['address']?></td>
                                     <td><?php echo $session['charging_capacity']?> KWH</td>
-                                    <td><?php echo $session['usage_time']?> Hours</td>
-                                    <td>$<?php echo $session['usage_cost']?></td>
+                                    <td>$<?php echo round($session['usage_cost'], 2)?></td>
+                                    <td><?php echo $session['usage_time'] ? round($session['usage_time'], 2):0?> Hours</td>
+                                    <td><?php echo $session['start_time'] ? date("d M, Y H:i:s", strtotime($session['start_time'])):''?></td>
+                                    <td><?php echo $session['end_time'] ? date("d M, Y H:i:s", strtotime($session['end_time'])):''?></td>
                                 </tr>
                             <?php } ?>
                         <?php } else { ?>

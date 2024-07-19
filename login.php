@@ -2,11 +2,10 @@
 include_once('db_details.php');
 
 // Create connection
-$conn = new pg_connect("host=$db_host dbname=$db_name user=$db_user password=$db_password");
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    echo "not connected to DB";
     die("Connection failed: " . $conn->connect_error);
 }
 

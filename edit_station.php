@@ -162,6 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <source src="./assets/images/wave.mp4" type="video/mp4">
         </video>
         <div class="container h-100 z-index-3 position-relative">
+            <div class="d-flex align-items-center gap-md-5 gap-2 flex-wrap mt-5">
+                <div class="locate-button position-relative"><a class="text-dark" href="panel-page.php">Panel</a></div>
+            </div>
             <div class="registor justify-content-start align-items-start py-12 px-lg-0 px-sm-10">
                 <h2>Edit Charging station</h2>
                 <form id="edit-station-form" action="edit_station.php?id=<?php echo htmlspecialchars($station_id); ?>" method="post" enctype="multipart/form-data">
@@ -179,9 +182,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="w-100 position-relative">
                                                 <div class="si-border"></div>
                                                 <select class="form-select h-55px form-select-solid ps-13" name="station_model" required>
-                                                    <option value="">--select--</option>
                                                     <?php
-                                                        $selected_models = explode(',', $station_models);
+                                                        $selected_models = is_string($station_models) ? explode(',', $station_models):$station_models;
                                                         if($station['station_model']){
                                                             foreach($station_models as $model){
                                                                 $selected = $station['station_model'] == $model['id'] ? 'selected' : '';
@@ -197,7 +199,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="w-100 position-relative">
                                                 <div class="si-border"></div>
                                                 <select class="form-select h-55px form-select-solid ps-13" name="station_year" required>
-                                                    <option value="">--select--</option>
                                                     <option value="2024" <?php echo $station['station_year'] == '2024' ? 'selected' : ''; ?>>2024</option>
                                                     <option value="2023" <?php echo $station['station_year'] == '2023' ? 'selected' : ''; ?>>2023</option>
                                                     <option value="2020" <?php echo $station['station_year'] == '2020' ? 'selected' : ''; ?>>2020</option>
@@ -217,7 +218,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="si-border"></div>
                                         <?php $slected_charge_types = explode(',', $station['charging_type']); ?>
                                         <select multiple id="chargin-types" class="form-select h-55px form-select-solid ps-13" name="charging_type[]" required>
-                                            <option value="">--select--</option>
                                             <option value="TESLA 1" <?php echo in_array("TESLA 1", $slected_charge_types) ? 'selected':''; ?>>TESLA 1</option>
                                             <option value="TESLA 2" <?php echo in_array("TESLA 2", $slected_charge_types) ? 'selected':''; ?>>TESLA 2</option>
                                             <option value="TESLA 3" <?php echo in_array("TESLA 3", $slected_charge_types) ? 'selected':''; ?>>TESLA 3</option>
@@ -229,7 +229,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="w-100 position-relative">
                                         <div class="si-border"></div>
                                         <select class="form-select h-55px form-select-solid ps-13" name="city" required>
-                                        <option value="">--select--</option>
                                         <option value="1" <?php echo $station['city'] == '1' ? 'selected' : ''; ?>>Afula</option>
                                         <option value="2" <?php echo $station['city'] == '2' ? 'selected' : ''; ?>>Akko</option>
                                         <option value="3" <?php echo $station['city'] == '3' ? 'selected' : ''; ?>>Arad</option>
@@ -393,7 +392,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const defaultLocation = {lat: <?php echo $station['latitude'] ?>, lng: <?php echo $station['longitude'] ?>};
         const systemValues = JSON.parse('<?php echo json_encode($system_values) ?>');
         const usingAlgorithm = '<?php echo $station['using_algorithm'] ?>';
-        console.log('usingAlgorithm', usingAlgorithm);
 
         $('document').ready(() => {
             $('#chargin-types').multiSelect();
